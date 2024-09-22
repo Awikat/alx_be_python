@@ -1,36 +1,26 @@
-def get_user_input(prompt):
-  """Gets user input for task, priority, and time sensitivity."""
-  while True:
-    response = input(prompt)
-    if response.lower() in ("yes", "no"):
-      return response.lower() == "yes"
-    elif response.lower() in ("high", "medium", "low"):
-      return response.lower()
-    else:
-      print("Invalid input. Please enter 'yes' or 'no' or 'high', 'medium', or 'low'.")
+print("Enter your task: ")
+task = input()
+print("High/medium/low: ")
+priority = input()
+print("")
 
-def main():
-  """Prompts user for task details and provides a reminder."""
-  task = input("Enter your task: ")
-  priority = input("Priority (high/medium/low): ")
-  time_bound = get_user_input("Is it time-bound? (yes/no): ")
+print("Is it time bound: (yes/no): ")
+istimebound = input()
 
-  reminder = f"Reminder: '{task}' is a "
-
-  match priority:
-    case "high":
-      reminder += "high priority task"
-    case "medium":
-      reminder += "medium priority task"
-    case "low":
-      reminder += "low priority task"
-
-  if time_bound:
-    reminder += " that requires immediate attention today!"
-  else:
-    reminder += ". Consider completing it when you have free time."
-
-  print(reminder)
-
-if __name__ == "__main__":
-  main()
+match priority,istimebound:
+    case 'high','yes':
+        print(task+"is a high priority task "+
+              "that requires immediate attention today!")
+    case 'low','no':
+        print(task+"is a low priority task. Consider"+ 
+              "completing it when you have free time.")
+    case 'high','no':
+        print(task+"is a high priority task that "
+              +"requires immediate attention today!")
+    case 'low','yes':
+        print(task+"is a high priority task "+
+              "that requires immediate attention today!")
+    case 'medium','yes':
+        print(task +"is a medium priority task that requires immediate attention today!")
+    case 'medium', 'no':
+        print( task +"is a medium priority task. Consider completing it when you have free time" )
