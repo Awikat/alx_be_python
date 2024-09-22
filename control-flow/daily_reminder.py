@@ -15,7 +15,15 @@ def main():
   priority = input("Priority (high/medium/low): ")
   time_bound = get_user_input("Is it time-bound? (yes/no): ")
 
-  reminder = f"Reminder: '{task}' is a {priority} priority task"
+  reminder = f"Reminder: '{task}' is a "
+
+  match priority:
+    case "high":
+      reminder += "high priority task"
+    case "medium":
+      reminder += "medium priority task"
+    case "low":
+      reminder += "low priority task"
 
   if time_bound:
     reminder += " that requires immediate attention today!"
